@@ -12,14 +12,13 @@ Install the required python packages:
 
     pip install -r requirements.txt
 
-Install jupyter notebook:
-
-    pip install jupyter
 
 ### Compatibility
 
 * Python 3.10.0 or later.
 
 ## Usage
+
+Recommend to use Jupyter Notebook to run the code on Visual Studio Code.
 
 Follow the instructions in the `main.ipynb` file. Execute the codeblock step by step.
