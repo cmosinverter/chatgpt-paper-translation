@@ -1,0 +1,933 @@
+158Toward Lightweight In-situ Self-reporting: An Exploratory Study of
+Alternative Smartwatch Interface Designs in Context
+XINGHUI YAN, School of Information, University of Michigan
+SHRITI RAJ, School of Information, University of Michigan
+BINGJIAN HUANG, Department of Computer Science and Technology, Tsinghua University
+SUN YOUNG PARK, School of Information and Stamps School of Art & Design, University of Michigan
+MARK W. NEWMAN, School of Information and Department of EECS, University of Michigan
+In-situ self-reporting is an important measurement method used for capturing daily experience data right-in-the-moment in
+dynamic contexts. Research has been conducted to reduce the demand placed on users for manually reporting data in context.
+In this regard, smartwatches offer inherent benefits for making self-reporting more convenient and facilitate data gathering.
+However, self-reporting on the small touchscreen under various contextual conditions can be burdensome and challenging. In
+this study, to gain insights into designing smartwatch-based self-report interfaces, we conducted an exploratory user study
+with eight design probes and twenty-four participants under three simulated scenarios: walking, gaming, and social chatting.
+Findings showed that users’ subjective perception of interface features (e.g., input methods and option layouts) varied with
+changes in context. Participants leveraged different features (e.g., hierarchical layout and discrete input) to micro-schedule
+self-report tasks (i.e., create one or multiple opportune moments) or to conduct eyes-free interaction with the assistance of
+smartwatch attributes (e.g., the physical frame of a smartwatch). We discuss implications for smartwatch-based self-report
+interface designs by considering context and designing interface features to support users’ coping strategies.
+CCS Concepts: •Human-centered computing →Empirical studies in interaction design ;Empirical studies in ubiq-
+uitous and mobile computing .
+Additional Key Words and Phrases: In-situ self-reporting, interface design, exploratory study, smartwatch input
+ACM Reference Format:
+Xinghui Yan, Shriti Raj, Bingjian Huang, Sun Young Park, and Mark W. Newman. 2020. Toward Lightweight In-situ Self-
+reporting: An Exploratory Study of Alternative Smartwatch Interface Designs in Context. Proc. ACM Interact. Mob. Wearable
+Ubiquitous Technol. 4, 4, Article 158 (December 2020), 22 pages. https://doi.org/10.1145/3432212
+1 INTRODUCTION
+In-situ self-reporting plays an integral role in enabling researchers to capture users’ daily experience data (e.g.,
+fatigue and mood [ 19]) and gain richer insights into the context of their activities (e.g., [ 8,17]). With personal
+experience data, researchers can model users’ behavior, thoughts, and feelings and provide better support for
+decision making (e.g., delivering health interventions) [ 40,50]. Compared with retrospective methods (e.g., the
+Daily Reconstruction Method [ 29]), participants are expected to report data right-in-the-moment “as it is lived”
+[7], which leads to less recall bias [ 62]. While providing such benefits, in-situ self-reporting imposes a high
+Authors’ addresses: Xinghui Yan (xinghuiy@umich.edu), Shriti Raj, Sun Young Park, and Mark W. Newman, 105 S. State St. Ann Arbor, MI
+48109, USA; Bingjian Huang, Department of Computer Science and Technology, Tsinghua University, BEIJING, P.R.China.
+Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee provided that
+copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the full citation on the first
+page. Copyrights for components of this work owned by others than ACM must be honored. Abstracting with credit is permitted. To copy
+otherwise, or republish, to post on servers or to redistribute to lists, requires prior specific permission and/or a fee. Request permissions from
+permissions@acm.org.
+©2020 Association for Computing Machinery.
+2474-9567/2020/12-ART158 $15.00
+https://doi.org/10.1145/3432212
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.
+158:2 •Yan et al.
+demand on users, since the nature of manual data collection requires participants to use self-report interfaces
+when they are preoccupied by their main activities, such as driving or talking with other people. In situations
+like these, participants may respond inattentively or fail to self-report altogether, which threatens research
+validity [ 33]. Hence, the demand for frequently interacting with self-reporting tools creates a central challenge
+for field-based user studies, particularly for longitudinal data collection [27, 41, 45].
+Research has endeavored to reduce the demand on users for in-situ self-reporting through multiple approaches,
+for example, adopting single-item self-reporting [ 1,9,38,52,55,63], prompting users at interruptible moments
+[46,52,57,63], or leveraging wearable devices such as smartwatches to offer quick and easy access to self-
+reporting tasks [ 24,27,32,51]. In particular, smartwatches have gained increased prevalence in self-report studies
+owing to many inherent benefits that they provide for facilitating in-situ response. For example, their widespread
+availability and quick access to information on-the-go [ 24,27,48,49] naturally makes it easier for users to receive
+prompts and provide self-report responses, both of which may require additional effort if using other tools (e.g.,
+taking a phone out of the pocket for self-reports). Researchers can therefore increase the frequency of self-reports
+and gather a high temporal density of data [ 27,30]. Given the benefits offered by smartwatches, in our study, we
+chose to focus on investigating and improving the smartwatch-based self-reporting experience.
+Despite the usefulness of a smartwatch for in-situ self-reporting, its interface presents a challenge for users:
+the need to report data on a small screen while engaged in other activities. Given that users are interrupted to
+conduct self-reporting tasks at unpredictable moments [ 31], the lack of available attention and low motivation
+for self-reporting makes it critical to design lightweight interfaces to facilitate self-report response. In current
+practice, designers mainly adopt basic interactions for smartwatch self-report interfaces, such as tapping, swiping,
+and scrolling [ 6,22,27,51]. As users find themselves in various circumstances when receiving self-report prompts
+(e.g., walking or attending a meeting), such interactions, though easy and simple, could still place a high demand
+on users and make them less motivated to report data right-in-the-moment. This calls for the need to study the
+user experience of smartwatch self-reporting and explore interface designs to improve self-reporting practice.
+From this perspective, our study aims to gain design insights into smartwatch self-report interfaces by
+investigating how the user experience of self-reporting is affected by different types of interface designs across a
+variety of contexts. To achieve our goal, we created eight varied design probes and studied their use through an
+exploratory user study with twenty-four participants under three simulated scenarios (i.e., gaming, walking, and
+social chatting). As an initial step to explore the design space of lightweight smartwatch-based self-report tools,
+understanding users’ subjective experience with these probes helps reveal important design opportunities and
+overlooked factors (e.g., users’ challenges), which can inform the future design and exploration. Specifically, to
+illuminate the design space, we focused on how various interface features (i.e., properties that give users access
+to functionality and affect user experience) impact user experience and what values users bring to bear when
+interacting with design alternatives.
+Our findings show a nuanced interaction between multiple contextual factors and interface features on shaping
+users’ smartwatch self-reporting experience. For example, participants preferred to use continuous input methods
+when stationary whereas they preferred discrete input methods in mobile conditions. Also, we identify different
+interface features (e.g., hierarchical layout and discrete input methods) that support participants in reducing the
+perceived demand of self-reporting through two coping strategies: (1) micro-scheduling a self-report task by
+creating one or more opportune moments for interaction and (2) conducting self-reporting in eyes-free mode.
+Though interfaces with features to support these strategies involved more interactions, they were found to
+facilitate self-report response and make self-reporting seemingly less disruptive and more acceptable to do
+right-in-the-moment. Based on our findings, we discuss design implications from two aspects: (1) considering the
+context of use for self-report interface designs; (2) designing to support users in developing coping strategies.
+Our paper makes three contributions: 1) We show how the user experience of smartwatch self-reporting
+is co-shaped by interface features (e.g., gesture types, option layouts) and contextual factors (e.g., mobility,
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.Toward Lightweight In-situ Self-reporting: An Exploratory Study of Alternative Smartwatch Interface Designs in Context •158:3
+attentional demands of primary tasks); 2) We identify self-report interface features that support users in reducing
+the perceived demand by micro-scheduling and reducing visual attention; 3) We offer guidance for the exploration
+of alternative interface designs used for smartwatch self-reporting and provide new insights into designing
+lightweight self-report interfaces to improve user experience.
+2 RELATED WORK
+In this section we review work in two areas: (1) in-situ self-reporting practice along with its opportunities and
+challenges; (2) research on designing smartwatch self-report tools.
+2.1 In-situ Self-reporting Practice: Opportunities and Challenges
+In-situ self-reporting is a widely-used method for researchers to gather participant data “in the wild” with less
+recall bias [ 62]. Through participants’ repeated contribution of their experience data and context annotations (e.g.,
+transportation mode [ 8]) using in-situ self-reporting, researchers can better study and model dynamics of human
+behavior to support building better ubiquitous technologies and designing interventions [ 40,50]. Compared
+with retrospective data collection, in-situ self-reporting induces less recall bias and supports more frequent data
+capture [ 53,62]. However, a downside of it is that users are frequently interrupted by self-report prompts and are
+expected to input data with their main activities ongoing. The demand of manually reporting data in context
+negatively impacts users’ compliance and retention, which constrains researchers from deploying longitudinal
+studies [27, 41, 45].
+Typical in-situ self-reporting is built on a smartphone with a set of questions delivered to participants regularly
+[11,17,25]. Though mobile and highly proliferated, smartphones still cannot assure successful delivery of
+self-report prompts all the time (e.g., phones out of reach) or participants may take additional effort to make
+a response [ 27,30]. Prior work showed that despite smartphones being in the same room with users 90% of
+the time, they were not instantly accessible half of the time [ 13]. In this regard, new device categories have
+been explored in order to reduce user demand and maximize users’ motivation to self-report, which include
+smartwatches [ 24,27,30] and smart accessories (e.g., [ 1,38,55]). These devices offer easier access to information
+such that participants could self-report “extremely fast” [ 27] and are less disrupted by frequent prompts [ 30].
+Particularly, smartwatches have gained increasing popularity for self-report studies because they are widespread
+and always-available [ 23,49], and their computing capabilities support integrating self-reporting with passive
+sensing [ 30]. Yet little is known about how to design interfaces for smartwatch self-reporting [ 32]. The small
+size of smartwatch screen presents a challenge for users to report data right-in-the-moment with little attention
+available to handle the interruption. Hence, it is valuable to probe user experience to understand challenges and
+problems with smartwatch self-reporting. The investigation of user experience of smartwatch self-reporting
+would inform the design of lightweight self-report interfaces and benefit numerous studies that aim to collect
+longitudinal user experience data [27, 41, 45].
+2.2 Research Development on Smartwatch In-situ Self-reporting
+To tailor self-reporting for smartwatches, prior work mainly adopted two approaches: (1) applying single-item
+self-reporting; (2) employing simple and brief interactions for interface designs.
+Single-item self-reporting is a type of measure that asks only one question at a time [ 42,59], which has gained
+popularity across many domains [ 1,27,54]. It has great face validity (i.e., users know which aspect is being
+measured), invokes less negative feelings during response, and is practical when time and space for self-reporting
+tasks are limited [ 42,59]. Moreover, for repeated single-item self-reporting used for longitudinal studies, often
+researchers did not include any textual prompts, as participants already knew what was being asked [1, 32, 38].
+Owing to these advantages, single-item has found a niche in smartwatch self-reporting. Intille et al. proposed the
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.158:4 •Yan et al.
+micro-EMA system that applied single-item self-reporting [ 27]. Micro-EMA could help achieve high compliance
+rate, completion rate, and first-time prompt response rate [ 27], which also made it feasible to sample experience
+up to 8 times more often than traditional self-reports delivered via a smartphone [ 39]. Building on this, King et al.
+proposed a Micro-Stress EMA framework to study stress experience during pregnancy [ 30]. Similarly, Manini et
+al. employed a single item to study pain level perception among older adults [32].
+In current practice, designers mainly adopt simple and basic gestures for self-reporting to make interactions
+glanceable and brief (no more than four seconds [ 5]). For example, in the wearable-ESM system, participants
+touched to pre-select an option and submit the answer through a virtual button [ 24]. On both micro-EMA and
+Micro-Stress EMA systems, participants reported data with a quick tap and glance [ 27,30]. Nadal et al. proposed
+an interface to collect mood data, where users tapped on weather-related icons to report [ 36]. Recent work has
+looked into alternative interactions tailored for specific self-report studies [ 32,51]. For instance, Timmerman et
+al. applied five input methods (i.e., notification button, speech, button, swipe, and range input) in examining how
+users reported perceived exertion [ 51]. Results from the one-day field study showed that participants preferred to
+use the range input method, in which they used several taps to select a numerical option on a hierarchical layout
+[51]. Simple and glanceable interactions are promising in reducing self-reporting demand, however, little is known
+whether they are useful in various contexts where users are less capable of inputting data right-in-the-moment.
+We do not know if there are alternative smartwatch interactions that make self-reporting less burdensome.
+Thereby, we set out to explore various interface designs for smartwatch self-reporting and aim to advance the
+design knowledge drawing on the investigation of user experience with different types of interfaces across a
+variety of contexts.
+3 CREATION OF DESIGN PROBES
+The objective of this study was to understand the user experience of smartwatch in-situ self-reporting in multiple
+contexts and how it is shaped by different interface features. To achieve this objective, we first set out to create a
+set of design probes that would represent multiple points in the design space of lightweight self-report interfaces.
+These probes were designed for repeated single-item self-reporting, as the literature suggests that it is an
+appropriate format for smartwatches, allows more frequent sampling, and yields good validity [27, 30, 39].
+To create the set of probes, we surveyed the literature for lightweight and low-burden interaction designs
+and referred to our prior work in the space of self-report interaction design, particularly for smartwatches (see
+[61] for a synthesis). Informed by the literature, we brainstormed design ideas that varied from each other in
+meaningful ways and selected promising and implementable ideas for low-fi prototyping. We tried these ideas for
+scales with different numbers of options (i.e., 3, 5, and 7) and only included the ones that seemed generalizable.
+We then iteratively selected and refined concepts through regular research meetings. Based on our analyses
+of prior work and iterative prototyping activities, we identified two high-level design dimensions that seemed
+to capture much of the meaningful variations among proposed designs: input gestures and option layouts. We
+ultimately chose eight designs that varied along these dimensions to develop into functional prototypes used for
+5-point rating scales (e.g., [ 56]). We chose 5-point rating scales because they are widely-used in research studies
+and more importantly, a suitable and appropriate norm for smartwatch self-reporting [ 26,33]. Then we used
+these prototypes as probes in a simulated scenario-based user study to investigate the impact of interface features
+and context on the user experience of self-reporting.
+3.1 Interface Design Dimensions
+Prior work has proposed design constraints for self-report interfaces built on smartphones, such as designing
+for in-situ use and repeated use [ 2]. Some of these constraints articulated for smartphones are transformable
+to the smartwatch medium and hence guided our preliminary ideation. Yet the specificity of a smartwatch
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.Toward Lightweight In-situ Self-reporting: An Exploratory Study of Alternative Smartwatch Interface Designs in Context •158:5
+drove us to tackle a central design challenge, which is the limited screen space for option display and actions
+to be performed by the user (e.g., navigating options) [ 21]. To address this challenge, we identified two design
+dimensions along which to vary our design probes: 1) input gestures - how users would enter self-report data
+on the small touchscreen; 2) option layout - how users would view response options on the small display.
+Input gestures refer to the physical actions that a user employs to navigate and select the intended response
+option for self-reporting. To support in-situ use [ 2], appropriate input gestures should perform well across
+dynamic contexts and should not be attention-demanding. Our analysis further identified two sub-dimensions
+along which input gestures could be categorized: gesture type and input continuity. Prior work showed two
+high-level gesture types that are widely-used for smartwatch interactions: touch-based and motion-based [ 5,34].
+Touch-based gestures include tapping, swiping, sliding, and drawing [ 3,5,34,44], which are generally considered
+simple and brief and have been extensively used. Five of the design probes we created are based on touch-
+based gestures (see Figure 1). Motion-based gestures , including wrist gestures, do not necessitate both hands for
+interaction [ 3,4,44]. To our knowledge, they haven’t been used for self-reporting tasks and therefore we want to
+investigate users’ attitudes towards using them under different contexts for self-reporting. We employed two
+common motion-based gestures, flicking and wrist-rotating, and created three motion-based design probes (see
+Figure 1). The second input gesture sub-dimension, input continuity, refers to whether the input is continuous or
+discrete when navigating options or making a selection. Prior work has suggested considering input continuity
+when designing for smartwatch interactions [20].
+Option layout refers to the format in which a full set of options is organized and displayed on one or multiple
+screens. This dimension is important because the small screen increases the demand on users to view option
+labels. Prior work sought ways to arrange options in a hierarchical layout to make each option region larger
+and option labels more readable [ 51], which we applied this idea on two of our design probes ( H-tapping and
+D-rotating , see Figure 1). We also explored other option layouts, such as list views, “card” display, and regions
+and then applied them in our designs [3, 44].
+3.2 Prototypes of Eight Self-Report Interfaces
+During the iterative design process, we observed that tensions exist among the different design dimensions and
+options. For example, presenting a single option on one interface (e.g., Swiping (see Figure 1)) would make each
+option label easier to read but may increase the number of moves to select an option. These observations confirmed
+the necessity of exploring varied combinations of interface features and their impact on user experience. Hence,
+our primary goal in determining the final set of probes to include in the study was to create varied interfaces to
+ensure comprehensive coverage of different input methods and option layouts and their combinations. With
+such intentionally varied design probes, we hoped to evoke varied reactions from users to different self-report
+interface features under different contextual conditions.
+In the end, we arrived at eight design probes that varied in gesture type, input continuity, and option layout.
+In Figure 1, we present how these probes fit in the design space delineated by two dimensions (i.e., input gestures
+and option layout) and offer details about performing these interactions (e.g., the number of input moves, the
+number of screens involved). All the design prototypes were implemented on a LG Watch Sport (35mm x 35mm)
+using Android Wear 2.0. Next we describe how users interact with the eight interfaces.
+•H-Tapping (Hierarchical-Tapping): A hierarchical layout presents five options in different regions on
+two screens, making the input space of each option bigger. Users tap on the specific regions to first select
+low- or high- level and then select a specific option.
+•P-Tapping (Pie-chart Tapping): In contrast to H-Tapping, five options are displayed on a single screen
+in a radial layout. Radial regions are assumed to be easier for finger-based tapping, as opposed to narrow
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.158:6 •Yan et al.
+Fig. 1. Eight designs selected for the exploratory study (top left), their implementation (top right), and their variations in
+two design considerations and additional factors (in the case of designing for 5-point rating scales).
+spaces in a horizontal layout. Moreover, this interface only requires a single move for users to make a
+selection.
+•Swiping: Users start from the default option (middle one), and swipe (left or right) to navigate among
+options. We adopted the typical swiping gesture offered by Android Wear 2.0 [ 3]. Five options are arranged
+in a cyclic list with only one option displayed at a time, making it easy for users to glance at each option.
+Also, swiping is a coarse gesture with low precision requirement on user input [14].
+•Sliding: Users start from any point on the edge of the screen and slide in either direction (clockwise or
+counter-clockwise), making an arc to navigate to the next or previous option, with the current option
+displayed on the screen. This interface was intended to enable users to complete self-reporting within one
+continuous move. Also, compared to employing a horizontal or vertical slider, we fit the slider on the edge
+of the screen to enlarge the input space.
+•Drawing: Users input strokes (e.g., a number) on the blank screen upon self-report prompt. Writing strokes
+has been used in prior work [ 58] and is feasible on the small screen. This probe is intended to save users’
+effort on navigating or viewing options. In the implementation, we applied the Wizard-of-Oz approach by
+having a research investigator manually translating the stroke into a response option [12].
+•Flicking: Users start from a non-option status and flick their wrist in one of two directions (inward or
+outward) to navigate to the previous or next option. We adopt the native wrist gesture offered by Android
+Wear 2.0 [ 3]. Without necessarily looking at the screen, users could just count the number of flicking
+movements to infer the current option focus.
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.Toward Lightweight In-situ Self-reporting: An Exploratory Study of Alternative Smartwatch Interface Designs in Context •158:7
+•Wrist-rotating: Users rotate the wrist inward to navigate among options that are presented in a list view,
+starting from a non-option status. As opposed to Flicking, users could select a response option through one
+continuous and quick movement.
+•D-rotating (Double-rotating): Similar to Wrist-rotating , but the options are divided into low- and high-
+levels with two and three options presented on each level, as with H-tapping . With fewer options on each
+screen, users may feel easier to control the wrist movement while using this interface. Also, there is a
+two-second time-out period when users navigate from the first level to the second, which was designed to
+help users avoid an accidental input.
+4 METHOD
+The goal of our work was to understand how users react to an assortment of self-reporting interfaces with varied
+interface features in different contexts and take advantage of them to facilitate self-report responses. Probing
+users’ subjective experience can help better structure the design space and uncover overlooked problems around
+in-situ self-reporting. For example, prior work suggests that micro-interactions, aimed to reduce interaction time
+on these interfaces (e.g., [ 24,27]), are still not ideal in terms of reducing demand on users (e.g., sometimes users
+dismissed a self-report prompt [ 27]). This implies that in addition to quantifying the self-reporting performance
+of users, it would also be valuable to examine user experience. That being said, our aim was not to identify the one
+best solution for all cases, but instead to illuminate the design space of smartwatch interfaces for self-reporting.
+Thereby, we conducted a qualitative investigation of users’ experience through an exploratory study, which
+allowed us to investigate users’ subjective experience in detail. We focused on users’ expectations, preferences,
+and concerns regarding self-reporting using different interface designs in various contexts. To do so, we designed
+and simulated three self-reporting scenarios (i.e., walking, gaming, and social chatting). These scenarios varied in
+participants’ mobility and hand occupation, the need for cognitive resources and time, and the presence of other
+people. Through simulating various real-life scenarios, we were able to rapidly investigate the impact of multiple
+contextual factors on self-reporting experience, which would be hard to do in the field, requiring lengthy and
+costly field studies.
+4.1 Simulated Self-reporting Scenarios
+The creation of self-reporting scenarios covered a variety of typical factors (e.g., mobility) that might affect the
+use of smartwatch self-report tools in context, according to the literature in mobile interaction [ 60]. During the
+brainstorming process, we tried to cover as many factors as possible through a feasible number of scenarios to
+be experienced. We also ensured that these factors were representative and thought-provoking, which helped
+us capture participants’ reactions to real-world contextual variations within a lab environment. In addition, we
+considered the feasibility of simulating the scenarios in the lab setting. We finalized three scenarios: walking,
+gaming, and social chatting (see Figure 2). The three scenarios varied in the types and levels of demand that a
+self-reporting task might impose on users. As elaborated below, we hoped such variations would help us gain
+a more comprehensive understanding of users’ self-reporting experience across multiple contexts. All three
+scenarios were set up in a single large room. To help participants better switch between different scenarios and
+quickly get immersed into a scenario, we displayed a scenario-related image on the large projection screen (e.g.,
+a picture of many people crossing a street was used in the walking scenario (see Figure 3(a))) during the user
+study. The following section describes the self-reporting scenarios and highlights the contextual factors that we
+simulated and investigated within them.
+•Walking. Participants imagined heading home from the grocery store with a bag in their hand, while
+actually walking back and forth in a large room. They could stop walking or switch the bag to the other
+hand (e.g., from left to right) during the walk. This scenario was used to examine users’ self-reporting
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.158:8 •Yan et al.
+2a) 2b) 2c) 2d)
+Fig. 2. Images from our exploratory user study: a) walking with a grocery bag in the hand; b) playing online video games; c)
+social chatting; d) a user completing a self-reporting task on the smartwatch (H-Tapping).
+Fig. 3. Materials used to situate our participants in the study settings ((a). a scenario-related image; (b). a slide presenting
+the scenario details during the brief introduction; (c). storyboards describing three simulated scenarios) and (d) the affinity
+diagram created during the data analysis process.
+experience in mobile (e.g., walking [ 16,49]) and one-hand occupied situations [ 16,49]. To create the walking
+scenario, we moved all chairs aside and prepared a grocery bag (about 1000g) for our participants.
+•Gaming. Participants sat in front of a laptop and played an online video game called Zuma (https://www.
+zuma-deluxe.biz/). Participants were not allowed to click the pause button of the game when self-reporting
+as we intended to investigate how participants respond to self-report prompts in this scenario. The fast-
+paced nature of Zuma allowed us to create a cognitively demanding scenario where participants had little
+attention available for self-reporting. To immerse participants in the gaming scenario, participants were
+first invited to play a while without any self-reporting tasks.
+•Social chatting. Participants had a casual conversation with one of their classmates, whose role was
+played by the research investigator. The investigator started the conversation by talking about school work
+and school life, including discussions of the participants’ academic interests and background. This scenario
+highlighted two contextual factors: cognitive engagement in a conversation and the presence of other
+people.
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.Toward Lightweight In-situ Self-reporting: An Exploratory Study of Alternative Smartwatch Interface Designs in Context •158:9
+Fig. 4. Participants were invited to try a subset of interface probes under three simulated scenarios.
+4.2 Procedure
+The user study with each participant lasted up to 80 minutes. Figure 4 illustrates the user study procedure. Each
+study began with the researcher presenting an overview of the study. Researchers set the scene with a story about
+a graduate student’s clinic visit for his/her fatigue issues. The graduate student was asked to track the fatigue
+level by answering a self-report question (i.e., “How fatigued are you feeling right now (Not at all (1)- Extremely
+(5)?”) using a smartwatch five times per day. We told the participants to imagine that they were the graduate
+student and were expected to answer the self-report question when sensing a prompt in various contexts. This
+offered participants a sense of taking part in actual self-report studies.
+Each participant tried a subset of three interfaces out of eight in the study. In this way, they could fully reflect
+on each given interface and provide sufficient feedback in a reasonable study time. The subsets of interfaces were
+randomly generated but followed three criteria: (1) At least one touch-based interface and one motion-based
+interface were tried by each participant to ensure a variety of user experience; (2) The number of participants
+trying each interface was balanced (nine participants for each interface); (3) There was not duplication among
+the subsets, which minimized the group effect. In practice, we randomly generated the subsets first to meet these
+criteria and randomly selected one of them for each participant’s study session.
+In the study, participants tried the randomly-generated subset of three interfaces in a randomized order in
+three scenarios. They used one interface in all scenarios at one time and then switched to the next interface,
+which helped them gain a complete experience with each interface. Also we counterbalanced the order of the
+three scenarios that each participant went through with each interface so as to minimize the effect of the order of
+scenarios on participants’ experience. Before using each interface, we introduced it to participants and allowed
+them to practice it until they felt comfortable and confident to go through the simulated scenarios. Flexible
+practice time (ranging from a couple of minutes to up to five minutes) allowed participants to gain familiarity
+with each interface and minimized the impact of acquaintance with simple techniques such as tapping.
+For each scenario, we presented a storyboard and read a script (see Figure 3(c)) to situate our participants
+when they entered into the scenario for the first time. Under each scenario, participants were invited to use
+each interface at least three times. For each trial, participants were either asked to select the option that was
+pre-assigned by the investigator or reflect on their actual fatigue level. This helped us examine the input accuracy
+and the user experience of completing a real-world self-reporting task. Multiple trials on a single interface enabled
+us to observe how participants got adapted to the interfaces and the context of use. It also helped us investigate
+the user experience of selecting different options on an interface.
+To implement these prototypes for the user study, we used a one-second buzz to notify users of a self-reporting
+task. The system employed a 15-second waiting time for users to make an input, otherwise it would record a
+missing report. A single buzz was used to indicate a change in option focus or screens (applied to interfaces except
+forH-tapping and P-tapping (see Figure 1)). We also used a two-second time-out period to automatically log
+self-report data, which reduced manual submission effort. All the self-report tasks were delivered to participants
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.158:10 •Yan et al.
+at random time points such that participants could not predict the prompt time and prepare for it. Also we did
+not remind participants if they missed a self-report. These helped simulate real-world self-reporting experience.
+We conducted brief semi-structured interviews (“micro-interviews”) after participants tried each interface under
+each scenario. Leading questions included the difficulties that participants had encountered while self-reporting
+and their attitudes toward the interface (e.g., “How do you feel about the interface?”, “Did you have any difficulties
+while using it?”). In this way, we captured participants’ user experience (e.g., impacting factors or the ease of input)
+with less recall bias. After participants experienced one interface under all the three scenarios, we held a debrief
+with participants to understand their general attitudes towards this interface and any encountered challenges
+under each scenario. In the end, we collected feedback from participants about their overall user experience,
+including comparisons among interface designs and self-reporting experience across different scenarios.
+4.3 Participants
+We recruited 24 participants (13 females and 11 males, aged 18-34) through campus mailing lists and the snowball
+sampling method. We gave a $15 gift card to each participant for a one-hour session. This study was approved
+by the University’s Institutional Review Board. All selected participants met the requirement of having used a
+smartwatch before but showed different levels of familiarity. 6 participants were active users of a smartwatch
+and 11 participants had used one for some time but were not currently using it. The rest of the participants had
+used a smartwatch but did not own one.
+4.4 Data Collection and Analysis
+We used observational notes, audio-recorded interviews, and video recordings for data analysis. During the user
+study, one researcher took observational notes with timestamps to capture critical moments of participants’
+experiences, and the other guided the session with our participants. We analyzed observational notes and referred
+to the videos to summarize common user behaviors. For analyzing the interviews, we first transcribed them and
+then conducted data analysis using an iterative process of generating, refining, and comparing the emerging
+themes. The study team discussed the potential themes starting with a few initial interviews to reach an agreement
+on generated themes and understanding of each finding. The coding process was further reviewed with the other
+authors as a form of peer debriefing to refine, develop, and organize the themes (see Figure 3(d)).
+5 FINDINGS
+In our study, participants used the eight prototypes for 724 times. There were 5 times that our participants
+missed a self-reporting task (3 in the gaming and 2 in the chatting scenarios), except for this, all participants had
+accurately input the assigned number or reported that they had inputted the intended fatigue level data.
+Overall, multiple contextual factors in any given scenario led to our participants’ conflicting attitudes towards
+self-reporting interfaces and their features. In our simulated scenarios, these factors included mobility, hand
+occupation, cognitive engagement and the presence of other people, to name a few. The predominance of these
+factors and their relative importance to participants varied with scenarios, accounting for participants’ changing
+attitudes and varied self-reporting experience. Interestingly, with some interface features, such as hierarchical
+layout and discrete input methods, participants were able to make self-reporting less burdensome and better
+integrated into their main activities by adopting two strategies: micro-scheduling and conducting eyes-free
+interaction.
+5.1 Factors Affecting Users’ Self-reporting Experience with Different Interface Features
+From the interview data, we identified three types of factors contributing to users’ self-reporting experience
+during the user study: 1) main activity-related factors (i.e., mobility, hand occupation, time-sensitivity, cognitive
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.Toward Lightweight In-situ Self-reporting: An Exploratory Study of Alternative Smartwatch Interface Designs in Context •158:11
+engagement, and social appropriateness); 2) factors related to self-reporting interfaces (e.g., input methods and
+option layout); 3) user-related factors (i.e., physical and cognitive abilities, perceived importance of the main
+activity, and expertise). Our findings focus on how particular main activity-related factors affected users’ reactions
+to various interface features for self-reporting interfaces.
+5.1.1 Relevance of Factors Affecting User Experience Changes with Context. Participants’ self-reporting experience
+was shaped by different predominant factors under each simulated scenario. How they weighed the importance
+of these factors, at times, led to changing attitudes towards the same interface across different scenarios.
+Walking. Participants reacted differently to touch-based and motion-based interfaces in the walking scenario
+due to two factors that impacted participants’ physical ability: mobility and hand occupation. Most of the
+participants (n=19/24) preferred to use touch-based interfaces as these interfaces were more resistant to body
+movements. For participants who could coordinate hand and leg movement, however, motion-based interfaces
+were seen as more convenient. Although participants could tell that they spent more time on using motion-based
+interfaces in general, they were not bothered by self-reporting while walking. However, for participants (n=10/24)
+concerned about road safety, cognitive availability while walking took precedence, for which they were inclined
+to use interactions that they felt were simple and quick, such as H-tapping andP-tapping .
+Most participants valued mobility over hand occupation in deciding on their preference for self-report interfaces.
+Although single-handed gestures for self-reporting seemed to address the hand occupation problem, it actually
+imposed a high demand on the coordination of hand and leg movement. For example, when P8 used Wrist-rotating
+and kept walking at the same time, she felt uncomfortable and expressed: “It was hard to keep my hands steady
+[for wrist-movement] while walking. I would rather stop and report. ”
+In contrast, touch-based interfaces were more favored by participants as they felt more capable of performing
+touchscreen gestures while walking. In this regard, it seemed that most participants could bear the demand of
+using two hands for interaction with one hand being occupied by a bag while walking. This was on the condition
+that the touchscreen gesture was simple to perform, such as only involving one move, as reported by P17: “As this
+(P-tapping) only needed one tap, I could still hold my bag [at my right hand and did not switch it to the left hand]. ”
+For participants who could coordinate wrist movement while walking, they reacted positively to the single-
+handed interaction (i.e., wrist-motion gestures) in the one hand-occupied situation (i.e., holding a grocery bag in
+the hand). For example, P19 was used to holding the bag in the right hand while self-reporting: “It [D-rotating]
+only took my left hand for interaction so that I could hold my bag with my right hand. ” Also, these participants
+complained that touch-based interfaces were inconvenient because they necessitated the use of both hands to
+self-report, as reported by P2: “While using this one (H-tapping), I had to raise both of my hands to tap the screen,
+which annoyed me a little bit [with one hand occupied by a bag]”.
+In the context of heading home from the grocery, our participants felt relaxed and were not concerned much
+about the interruption caused by self-reporting. Participants seemed to be willing to get engaged in self-reporting
+and spent more time compared with the other two scenarios. For example, P12 thought Drawing was acceptable
+in the walking scenario although it was perceived slower than tapping interfaces: “I pretended to be tired and
+walked slowly. I could spend more time doing this (writing a number) as I was not hurried to do anything. ” However,
+when envisioning real-life situations, nearly half of our participants (n=10/24) recognized that walking involved
+some cognitive work, such as maintaining awareness of the physical surroundings. For this reason, interfaces
+likeSliding seemed to distract participants’ more attention from walking as they needed to continuously track
+their touch on the edge of the screen. Perceiving such demand, P2 had to stop to use Sliding :“I was trying not to
+stop when I was walking, but I had to look down at the interface to see how the numbers (option focus) changed. ”
+Gaming. In the gaming scenario, participants valued the simplicity and directness of a self-reporting interaction
+due to the significant amount of concentration required for gaming and the time-sensitive nature of the game.
+Accordingly, they responded positively to the interfaces that enabled quick completion with features such as no
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.158:12 •Yan et al.
+option display (i.e., Drawing ). Compared with the walking condition, one-handed occupation (i.e., one hand used
+for operating the game) seemed less important. Only a few participants (n=3/24) preferred to use single-handed
+interactions so that they could process primary and secondary tasks using two hands simultaneously.
+When participants were heavily engaged in the game, they were less capable of quickly diverting their attention
+from playing the game to processing information, such as viewing the response options or recalling the option
+navigation. For example, P21 had a hard time recalling how options were organized in the hierarchical layout
+ofH-tapping upon self-report prompts: “It (H-tapping) was quite easy to use when I did nothing, but it became
+harder when I was playing the game, since I had to draw my attention from the game and think of which options
+are in which levels (low- or high-).” In this regard, a few participants preferred using Drawing over H-tapping
+because they did not need to view options and could directly input a response, as expressed by P13: “Drawing is
+intuitive and pretty straightforward. It didn’t require me to read the options and I could directly draw a number [on
+the screen]. ”
+Wrist-motion gestures required participants to maintain a particular wrist position for two seconds in order to
+log the self-reported data. Under most cases, we found that participants were still engaged in self-reporting tasks
+during the two-second time-out period. In this regard, most participants felt negatively towards wrist-motion
+gestures because completing a self-reporting task was perceived much slower as opposed to touch-based gestures.
+This particularly did not fit for the context where participants were rushed to resume the game, as expressed by P5:
+“I felt super frustrated that it took me time to wait for the response to be submitted. It still required my concentration to
+keep the wrist at a particular position, so I couldn’t go back to the game during the time-out period” (Wrist-rotating ).
+However, according to participants’ feedback and our observations, there were still a few participants who valued
+the design of Flicking (n=2/9), Wrist-rotating (n=1/9), and D-rotating (n=3/9) when they became more skilled on
+these interfaces. They gradually appreciated managing the self-reporting task by involving one hand only, as
+reported by P6: “I felt more comfortable when I was playing the game and doing this (Wrist-rotating) because it only
+needed one hand for interaction. ”
+Social chatting. In general, participants were disinclined to engage in any interruptions during a conversation
+unless it was possible to perform self-reporting tasks in a quick and discreet way. This was mainly because of
+concerns about the social appropriateness. Participants thought it was socially unacceptable to deviate attention
+from the conversation or make noticeable movements. In this regard, they hoped self-reporting interfaces to be
+simple and quick. Interestingly, participants’ acceptance towards these interfaces were largely dependent on
+their abilities to perform the gestures discreetly.
+In this condition, regardless of interfaces, upon receiving a self-report prompt, almost all participants slowed
+down (n=23/24), paused for a few seconds (n=23/24), forgot what to say (n=4/24), or even said “hold on” (n=2/24) to
+his/her partner at some trials. In a sense, participants found self-reporting intrusive to interpersonal conversations
+no matter which interfaces they used or how they felt about them. For example, even though P7 preferred to
+useSwiping over other interfaces in this condition, he still thought that “The interruption [to the conversation] is
+always there. ” Similar to the gaming condition, participants’ attitude towards an interface was mostly determined
+by the perceived quickness and briefness. In this regard, they hoped to use interfaces like P-tapping ,Drawing ,
+andSwiping for self-reporting because they could respond relatively quickly and resume the conversation in
+seconds, as reported by P5: “I do not want to be distracted by anything [during a conversation], otherwise I might
+need to explain what I was doing to other people. Also this is a medical question [asking fatigue level]. I don’t want
+others to know what I am doing, even my friend. If I have to report right away, I would use this one (Swiping) because
+I could swipe quickly, and sometimes [I] just [need to swipe] once” (Swiping ).
+Participants’ physical ability was constrained in the chatting scenario as they did not want to perform noticeable
+or awkward gestures while being engaged in a conversation with other people. In this respect, participants
+showed strong contrast in their acceptance towards Drawing andD-rotating , due to their different attitudes to
+these designs and their varied abilities to interact with them in a socially polite way. For example, P13 disliked
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.Toward Lightweight In-situ Self-reporting: An Exploratory Study of Alternative Smartwatch Interface Designs in Context •158:13
+Drawing because this gesture was easily misunderstood by the counterpart: “It was weird because I had to look into
+my partner’s eyes [while talking] and write something down at the same time. It looked like I was secretly evaluating
+her (the research investigator). ” On the contrary, P10 was able to use Drawing while pretending that he was doing
+nothing: “I found the tip of writing numbers in a polite way while talking with someone. See, I could hold the watch
+face by my [right] hand, which helped me locate the screen so that I knew how to put the entire stroke on the screen.
+Moreover, as I hovered the watch by my right hand, other people would not know what I was doing on the watch”
+(Drawing ).
+For the D-rotating interface, a number of participants felt that it was socially inappropriate because of the
+obvious wrist motion, as reported by P13: “I had to keep my wrist in that odd position to do self-report when sitting
+in front of someone, which looked extremely weird. ” However, we observed that some users (n=3/9) could put their
+left hand (the hand wearing the watch) under the table to perform the wrist-motion gesture and glanced at the
+screen afterward to confirm their response, while appearing fully engaged in the conversation, as reported by
+P19: “I hid my hand under the table and moved my wrist slightly to operate the system while talking with her (the
+research investigator). In this way, she might not notice what I was doing. ”
+In sum, we found that participants showed varied attitudes and perception for different interfaces in different
+contexts depending on specific factors that were important to them, including those related to the three main
+activities, self-reporting interfaces, and users themselves. At times, participants showed conflicting preferences
+between different types of interfaces as a result of the nuanced interaction of these factors.
+5.1.2 Users’ Opinion of Input Continuity Changes with Mobility Status. In addition to the three types of factors
+described above, we observed that the input continuity of a particular interface — continuous or discrete input —
+affected participants’ opinion of that interface depending on their mobility. In general, participants would like to
+use discrete input methods (e.g., Swiping andFlicking ) in mobile situations but continuous input methods (e.g.,
+Drawing ,Sliding , and D-rotating ) in stationary situations. Discrete input was thought to be more accurate and
+had lower precision requirements in mobile situations. Alternatively, continuous input could create a smooth
+user experience and lead to less fatigue perception among users in stationary conditions.
+For mobile situations like walking, participants opted for discrete input techniques, such as Swiping and
+Flicking . This might be because that Swiping did not require precise input when navigating the options. For
+example, P4 ranked Swiping as his favorite input method in the walking scenario: “I felt most confident using
+Swiping because I did not have to touch the screen all the time while I was walking. Plus, it didn’t require me to
+start at a particular spot on the screen. I can swipe on the whole screen in different directions and don’t have to be
+careful about the accuracy. ” Similarly, the discreteness of flicking gesture was thought to be suitable for the mobile
+condition as it was resistant to the body movement, as expressed by P9: “I like Flicking most. It was sensitive to my
+hand (wrist) movement rather than my body movement. I could count the times that I flicked, like one, two, three... to
+select an option” (Flicking , Walking).
+In mobile situations, participants had difficulties in using continuous input interfaces such as Sliding ,Wrist-
+rotating , and Drawing . For instance, to prevent an input error while using Sliding when walking, P15 had to
+lift both hands throughout the self-reporting task to make the watch steady: “I needed to smoothly slide on the
+screen, for which the watch had to be steady [for interaction]. But when I was walking, I raised both my hands
+to keep the watch stable. This made me feel tired. ” In addition, participants disliked Wrist-rotating due to the
+difficulty of continuously making wrist movements while walking, as expressed by P20: “It (Wrist-rotating) was
+not appropriate for the walking situation because I was not in a stable situation and my hand naturally moved. It
+was hard to continuously make an input (wrist movement). ”
+In a relatively stationary condition, such as gaming and chatting, participants felt more comfortable using
+continuous input methods. An example is that P22 preferred Drawing in the stationary position more than in
+the mobile situation because “it was much easier to sit down and write something” (Chatting). Continuous input
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.158:14 •Yan et al.
+offered participants a smooth self-reporting experience when navigating the options, as reported by P9: “I actually
+like this one (Sliding) better [in the chatting scenario] because I could tell when I was switching between the options
+with the single buzz, like when I was going to [option] one, two, three, four. ” As opposed to continuous input, the
+discrete input methods were thought to be inconvenient and taxing for making a numeric response in the sitting
+condition: “Sometimes it was tiring to do swiping over and over again” (P7, Gaming). In addition, participants
+thought that Flicking as a discrete input method induced tiredness in the stationary situation due to repetitive
+movements: “This (Flicking) is really tiring, because I had to flick my wrist once and then saw the screen if I had
+changed the option [focus]. I had to look at the screen all the time and repeated doing this gesture” (Gaming).
+In summary, participants reacted more positively towards continuous input methods when they were less
+mobile. This created a smooth experience in making a numeric response for self-reporting. On the contrary,
+participants preferred to use discrete input methods in mobile situations because of the need for lesser touch or
+gesture precision as compared to continuous input methods.
+5.2 Interface Features Supporting Users in Reducing Perceived Demand for Self-reporting
+Despite participants’ varied responses to different types of interfaces under different contextual conditions, we
+identified certain interface features (e.g., hierarchical layout and discrete input methods) that supported users in
+reducing perceived demand for self-reporting through two strategies: micro-scheduling and conducting eyes-free
+interaction.
+5.2.1 Interface Features Supporting Two Types of Micro-Scheduling. In the study, we found that sometimes
+participants did not report immediately or at one time. Instead, they strategically arranged one opportune
+moment or several moments for in-situ self-reporting (i.e., micro-scheduling). The strategy of postponing
+self-reporting tasks to one complete moment was seen on all interfaces except for Wrist-rotating andD-rotating .
+With interface features like discrete input and hierarchical layout, participants were able to complete a self-report
+task over several time windows. Additionally, micro-scheduling was used differently across contexts and on
+different interfaces, nevertheless, it allowed users to conveniently draw attention away from the main activity to
+manage the self-reporting task.
+Postponing self-reporting and executing it in one complete time window. Our participants were found
+to sometimes postpone the self-reporting task and then execute it in one complete and seemingly interruptible
+time window before the waiting time (i.e., 15 secs) expired. This strategy was seen on interfaces except for
+Wrist-rotating andD-rotating because participants were urged to make a response right away when using these
+motion-based continuous input methods, otherwise a slight change in wrist position might lead to an accidental
+response. In contrast, all the designed touch-based interfaces and Flicking allowed participants to delay their
+response to an appropriate moment.
+Participants were found to extensively postpone self-reporting tasks in cognitively demanding scenarios like
+gaming and social chatting. In the gaming scenario, we observed that almost all participants (n=22/24) did not
+self-report until confident that the game was under their control (e.g., when they were close to the completion of
+the current level), as reported by P23: “I would like to report when I finished a level, but probably in real life, I
+wouldn’t report during the game” ( P-tapping ). Similarly, in the chatting scenario, some participants (n=5/24) did
+not self-report until they finished a sentence. Before starting to pay attention to his/her partner’s words, a few
+participants (n=3/24) took the interval to self-report, which they considered to be a socially acceptable moment.
+In another case, P12 found the moment of listening to the partner suitable for in-situ self-reporting because
+“when she [the researcher] was talking, I felt it easier for me to listen to her and self-report at the same time
+since I did not have to pay as much attention as [when] I spoke and organized my words” ( H-tapping ,Chatting ).
+Completing self-reporting in several small time windows. Interestingly, we found that some participants
+(n=6/24) sometimes performed the self-reporting task over a series of small time windows on some interfaces,
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.Toward Lightweight In-situ Self-reporting: An Exploratory Study of Alternative Smartwatch Interface Designs in Context •158:15
+including H-tapping ,D-rotating ,Flicking , and Swiping . While using these interfaces, participants seemed to divide
+a self-reporting task into multiple steps and switched between main activities and self-reporting multiple times
+as they executed those steps one by one. They managed to do so because while using these interfaces, they could
+temporarily stay at one option (when using discrete input methods) or at one level (using hierarchical layout)
+and then seize the time-out period to quickly resume ongoing activities.
+By using discrete input methods (e.g., Swiping andFlicking ), participants were able to temporarily stay at one
+option and then quickly caught up with the primary activity if it was time-sensitive, such as playing the game or
+talking with people. As participants got familiar with the time-out policy, they seemed to manage to re-engage
+in the next sub-task of self-reporting in time (i.e., within two seconds) or complete the rest of navigation. For
+example, P2 found the advantage of using Flicking while playing in the game: “I had to keep playing the game, so I
+went back to the game sometimes to make sure that I did not lose the game and came back to self-reporting before the
+time-out period ran out. ”
+The hierarchical layout of some interfaces (i.e., H-tapping and D-rotating ) allowed participants to take the
+transition time from the first level to the second to temporarily resume main activity. For example, P10 resumed
+the game when holding his wrist in his current position while waiting for the second-level (two or three options)
+to be displayed. Later, he looked down at the watch interface again to check his selection: “In general, I don’t love
+it (D-rotating), but at least I like that I could hold my hand at a particular position and continue doing whatever I
+was doing. ”
+Overall, to better integrate self-reporting into main activities, participants extensively adopted micro-scheduling
+in the gaming and chatting scenarios with most interfaces (except for Wrist-rotating ). This strategy was supported
+by multiple features related to our interface designs, such as discrete input methods and hierarchical layouts.
+With these interface features, participants could either postpone a self-reporting task to an appropriate and
+interruptible moment or arrange multiple moments to complete a self-reporting task.
+5.2.2 Interface Features Supporting Eyes-free Self-reporting. In our study, we observed that while using H-tapping ,
+D-rotating , and Swiping , our participants were able to conduct self-reporting in eyes-free mode. Participants
+achieved in doing so because there were limited options on each interface (one or two options owing to the use
+of card display or hierarchical layout) such that participants could easily locate each option or infer the option
+focus with the help of physical, spatial, and tactile features of smartwatches (e.g., physical frame of a smartwatch,
+wrist-movement orientation, and vibration feedback). Through eyes-free interactions, participants seemed to be
+able to maintain awareness of the main activities (e.g., keep eye-contact with the partner in the conversation)
+while actually making a self-report input.
+ForH-tapping andD-rotating , participants were observed to leverage physical and spatial hints to easily locate
+the options so that less visual attention was involved during an interaction. Compared with other interfaces,
+this was perhaps because fewer options were displayed on a single screen and thus the input precision was less
+required. For example, two participants utilized the smartwatch’s round shape and its physical buttons to locate
+options on H-tapping and hence, could use it in eyes-free mode in the chatting scenario: “It was easy to click on
+the upper or the lower part of the screen with the help of this physical button [while not seeing the screen]. I knew
+that the higher (lower) level is on the top (bottom) part of the screen so I could select an option without seeing it (the
+screen)” (P21). When some participants used D-rotating in eyes-free mode, they imagined that the options were
+located spatially around their wrist and accordingly moved their wrist to select each option, as described by
+P23: “This [D-rotating] is very easy, since I know that tilting outward (inward) is selecting the higher (lower) level,
+therefore, I could just move my wrist without any concerns and kept talking with others [at the same time]. ”
+However, several participants pointed out that the eyes-free interaction using H-tapping andD-rotating might
+only work when there were two options on each screen, as expressed by P10: “I think it (D-rotating) is most
+suitable for a binary question. It is difficult to select the option in the middle of the screen because that requires me
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.158:16 •Yan et al.
+to control my wrist movement very well. If there were more options for a question, you may break the options into
+several binary questions and let people use this one (D-rotating) without having to see the screen” (Chatting).
+On the other hand, a number of participants (n=5/9) who had used Swiping could enter a numerical response in
+eyes-free mode. Participants could leverage the single buzz to help them confirm an option change and therefore
+count the number of single buzzes to infer the option focus without seeing the screen. For example, P22 told us:
+“I like the idea of Swiping because in some situations, I could easily select an option by counting how many buzzes I
+received [and not looking at the screen]” (Walking). However, P22 also showed concern that she would not be able
+to self-report in eyes-free mode if there were more levels for a self-report question: “As this question has numbers
+assigned to each option, I could count the number [of buzzes] to know which option I was at. However, if there were
+more options, let’s say, ten levels for a [self-report] question, I would easily lose track of it [option focus] if I did not
+see the screen” (Swiping ).
+Overall, with hierarchical layout and discrete input methods designed for self-report interfaces, participants
+could easily locate or infer a response option without involving visual attention when completing a self-reporting
+task. The eyes-free self-reporting was possible because there were limited options (e.g., one or two) displayed on
+each screen and participants could take advantage of some attributes of a smartwatch (e.g., the small physical
+frame) to assist themselves in locating or navigating options.
+6 DISCUSSION
+We conducted an exploratory user study of eight self-reporting smartwatch-based interfaces in three different
+scenarios (walking, gaming and social chatting). We aimed to understand how various interface features shaped
+user experience of smartwatch self-reporting and what it means for future design. Our findings show nuanced
+interactions among multiple factors (main activity-related, self-reporting interface related, and user related) in
+different scenarios in impacting users’ attitudes for self-reporting interfaces. We also identified a set of interface
+features that assisted our participants in strategically integrating their self-reporting tasks into ongoing activities
+and made self-reporting seemingly less disruptive. These include hierarchical layout and discrete input methods
+that support users in micro-scheduling a self-reporting task in one or multiple opportune moments in between
+their main activities. Also, participants leveraged some interface features (e.g., hierarchical layout and discrete
+input) along with some attributes of a smartwatch (e.g., physical frame, vibration feedback) to conduct eyes-
+free interaction so as to allow the continuous execution of their main activities. In what follows, we discuss
+implications for designing smartwatch-based in-situ self-reporting interfaces.
+6.1 Considering Context in Designing Smartwatch Self-reporting Interfaces
+Our findings show that users’ self-reporting experience with smartwatches is co-shaped by various interface
+features and multiple contextual factors, along with participants’ perceived importance of these factors. Our
+findings suggest that there might not be a one-size-fits-all interface that is efficient and effective across all
+contexts. A seemingly more complex interface (e.g., Sliding ) may ease the demand for self-reporting under some
+contexts (e.g., playing the game) owing to its interface features (i.e., continuous input method). This means
+that beyond simplicity and briefness, which are certainly important qualities, it is also valuable to consider
+other dimensions, such as those proposed during our iterative design process (i.e., gesture type, input continuity,
+and option layout). However, which points in these dimensions need to be adopted for a specific study would
+depend on the context of use for a self-report tool. In this regard, our paper makes an initial step to explore
+the relationships among multiple contextual conditions and their amenable self-report interface features to
+reveal important considerations. Next, we discuss two design opportunities for considering context in designing
+self-report interfaces.
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.Toward Lightweight In-situ Self-reporting: An Exploratory Study of Alternative Smartwatch Interface Designs in Context •158:17
+6.1.1 Prioritizing Interface Design for Key Sampling Contexts. Our first design consideration is to prioritize
+interface designs for key sampling contexts. Key sampling contexts are referred to as the contexts that participants
+would frequently encounter upon receiving self-report prompts, those of research interest, or those where
+participants might contribute unique experience data [ 28,43,53]. A single interface might not work equally
+well for all sampling contexts in a given research study. In such a case considering a collection of influential
+contextual factors of the key sampling contexts may simplify and guide the design-related decision-making. For
+example, to sample college students’ stress level [ 10,35], researchers may want to gather data in key contexts
+such as group discussion, taking a class, and having an advising meeting as these activities tend to trigger stress.
+Influential contextual factors shared by these contexts (i.e., stationary condition and the presence of other people)
+can guide the selection of interface features that are well suited for these contextual factors and lead to more
+specific design candidates, such as Swiping andDrawing based on our findings.
+6.1.2 Enabling Self-reporting Input Flexibility Using Input Methods that Complement Each Other in Covering
+Different Contexts. Given that a single input method might not work well under all contexts, there might be an
+opportunity to allow multiple input gestures on a single interface, which could complement each other in reducing
+self-reporting demand in different contexts. Enabling more than one input method to fulfill one interaction
+purpose is not uncommon, for example, users could touch or drag a slider to make an input [ 3]. However, having
+too many input methods will confuse users. To deal with this challenge, for smartwatch self-reporting, our
+findings show that two juxtaposed input methods might be sufficient for covering a variety of contexts, for
+example, an interface enabling input methods used on H-tapping &D-rotating orSwiping &Sliding . Participants’
+preferences for each pair covered a range of circumstances, for example, Swiping was preferred in the mobile
+context or when the primary task was intensive whereas Sliding in the stationary context or unoccupied moments.
+This suggests an opportunity to integrate a pair of input methods into one interface and allow users to opt to one
+input method based on their activity context. Yet certainly more work is needed to evaluate the feasibility of field
+implementation and investigate if users could take advantage of such flexible input methods in context and what
+would be the benefits and drawbacks of such an approach.
+6.2 Designing to Support Coping Strategies to Reduce Perceived Demand for Self-reporting
+A prevalent challenge in deploying in-situ self-reporting studies is the frequent interruption to users [ 27,39,53].
+Our work contributes to a perspective of innovating interface designs to reduce the perceived demand for self-
+reporting and therefore facilitate self-report response in situ. Particularly, we identify different interface features
+that could assist users in achieving micro-scheduling and eyes-free interaction while completing a self-reporting
+task. This opens up the opportunity for exploring and designing lightweight self-report interfaces by considering
+interface features that support these coping strategies. More interestingly, in our study, the interfaces that support
+users’ in developing coping strategies seem more complex (e.g., requiring more moves to make a selection), while
+indeed making self-reporting easier or even acceptable to do in some specific contexts (e.g., social interaction).
+This implies that beyond designing simple interactions, an approach that most self-report studies currently follow,
+it is also important to think of interface designs that can allow users to easily cope with the interruption and
+better integrate a self-reporting task into main activities.
+6.2.1 Designing to Support Micro-scheduling. Our findings characterize two types of micro-scheduling that
+users adopt in the context of self-reporting: (1) postponing self-report response to an opportune moment and
+(2) completing a task over multiple time windows. Unlike self-initiated tasks carried out in mobile context (e.g.,
+searching content on-the-go [ 37]), self-reporting tasks are usually delivered at unpredictable moments, where
+users have not pre-allocated their attentional resources and are prepared for self-reporting. This leads to them
+postponing the task to a more opportune moment where less disruption would be perceived. In this regard,
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.158:18 •Yan et al.
+self-reporting tools should allow the flexibility for users to defer a task to a moment when they perceive less
+demand from main activities. For example, the system could allow sufficient wait time for users’ response, which
+would help reduce the re-prompt rate and the effort of retrieving the self-report question again.
+Second, our findings show that users break down a self-reporting task into several subtasks and complete
+them over multiple time windows, a specific strategy of task-switches [ 37]. Unlike “a quick glance and a tap”
+[27], adopting this strategy requires more interaction effort (e.g., number of moves) but presents a way for users
+to avoid a burst of interaction requests while self-reporting. For example, our findings show that interfaces like
+H-tapping andSwiping supported users in micro-scheduling, a strategy to make self-reporting less disruptive but
+has not been discussed by prior work. Moreover, having features to support micro-scheduling could facilitate
+self-report response under scenarios where users would be disinclined to any interruption, such as playing a game.
+This could help extend the scope of experience sampling to more diverse contexts and capture data at critical
+moments, such as sampling gaming experience for evaluating a game product [ 18]. Compared with completing a
+self-report at one time, micro-scheduling sub-tasks might extend the overall completion time, but could reduce
+user-perceived demand. This suggests that in addition to examining variables like completion time, it would
+be highly valuable to investigate how users orchestrate self-reporting tasks and main activities and design to
+support it.
+6.2.2 Designing to Support Eyes-free Self-reporting. Current self-reporting design practice follows the guidelines
+to support glanceability [ 5]. Our work presents interface features that facilitate eyes-free interaction in executing
+a self-reporting task, such as hierarchical layout and discrete input methods. This drives researchers to explore
+interface features that support users in developing eyes-free strategies through repeated interactions with self-
+report tools. In this way, researchers may gather more contextually-rich data that yield a more sophisticated
+understanding of user behavior and states (e.g., stress induced by a social conversation [ 15]). Additionally, our
+findings suggest that participants’ abilities to leverage these interface features (e.g., counting the number of
+swiping gestures) may be subject to the number of options in a self-reporting question. However, as smartwatches
+are generally suitable for questions with only limited options (e.g., yes-or-no questions [ 27]), we believe that
+our investigation has addressed an important case (i.e., 5-point rating scales). Our work also highlights various
+features of a smartwatch (e.g., physical frame and button position, wrist-motion range, or vibration) that assist
+users in executing eyes-free interactions during self-reporting. These enrich the understanding of smartwatch’s
+affordance for improving the self-reporting experience. Future work may consider marrying some interface
+features (e.g., hierarchical layout) to smartwatch attributes (e.g., physical frame) so as to design interfaces that
+support eyes-free self-reporting.
+6.3 Limitations and Future Work
+As with many in-lab user studies, the simulated scenarios we employed may not fully represent real-world
+situations. However, through careful design and implementation of the three scenarios in a lab setting, we
+captured how self-report interface features, coupled with multiple contextual factors, shaped user experience of
+self-reporting. The in-lab study enabled us to rapidly examine an assortment of interfaces and gain insights into
+future design opportunities. Also, in the study, we only examined our design probes for a 5-point rating scale in
+the context of single-item self-reporting. However, as 5-point rating scale is an appropriate form for smartwatch
+self-reporting and widely-used in many research studies [ 26,33], our investigation still makes an important
+move towards understanding the user experience of self-reporting and interface features that support users’
+coping strategies. We acknowledge that single-item self-reporting is still gaining its popularity and in many
+cases there would be multiple but limited questions on a smartwatch. In order to extend our design to multi-item
+cases, designers may design different indicators to inform users of different self-report prompts by referring to
+prior work (e.g., light [ 38] or vibration patterns [ 47]). Another limitation in our study is that we did not evaluate
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.Toward Lightweight In-situ Self-reporting: An Exploratory Study of Alternative Smartwatch Interface Designs in Context •158:19
+the full functionality with our prototypes, as our research focus was on the impact of various interface features
+(i.e., input gestures and option layout) on user experience. In order to design lightweight self-reporting systems,
+future work may need to explore a suitable and lightweight solution for handling other functions applied for
+a self-reporting tool (e.g., snoozing self-report, retrieving a deferred self-report on the smartwatch). Overall,
+findings from this study focused on eight specific interfaces, but we opened up a conversation of smartwatch
+self-reporting interface designs. Drawing on our findings and design considerations, designers and researchers
+can continue exploring the design space. Importantly, however, future work needs to situate the design and
+evaluation of self-reporting interfaces in actual studies to investigate real-world validity over time and examine
+the enhancement of self-report data quality.
+7 CONCLUSION
+In this paper, we have reported findings from an exploratory user study with twenty-four participants to
+understand the user experience of in-situ self-reporting on eight smartwatch-based designs under three simulated
+scenarios. Various interface features interacted with multiple contextual factors in shaping the self-reporting
+experience. Our study indicates the opportunity of leveraging the context of use to improve self-reporting
+interface designs. Our findings also present self-report interface features (e.g., discrete input and hierarchical
+layout) that support users in developing strategies to facilitate response, such as micro-scheduling and conducting
+eyes-free interaction. This presents new opportunities for designing to support users in reducing their perceived
+demand for self-reporting, which would benefit future studies for investigating more diverse contexts in a less
+burden-inducing way. Taken together, our work contributes to the understanding of the interplay of context
+and interface designs in shaping the user experience of smartwatch self-reporting and the insights into how to
+design to support coping strategies, which makes an important move toward the lightweight in-situ self-reporting
+practice.
+ACKNOWLEDGMENTS
+This project was conducted with support from the University of Michigan Precision Health Initiative.
+REFERENCES
+[1]Alexander T. Adams, Elizabeth L. Murnane, Phil Adams, Michael Elfenbein, Pamara F. Chang, Shruti Sannon, Geri Gay, and Tanzeem
+Choudhury. 2018. Keppi: A Tangible User Interface for Self-Reporting Pain. In Proceedings of the 2018 CHI Conference on Human Factors
+in Computing Systems (CHI ’18) . ACM, New York, NY, USA, Article 502, 502:1–502:13 pages. https://doi.org/10.1145/3173574.3174076
+[2]Phil Adams, Elizabeth L Murnane, Michael Elfenbein, Elaine Wethington, and Geri Gay. 2017. Supporting the self-management of
+chronic pain conditions with tailored momentary self-assessments. In Proceedings of the 2017 CHI Conference on Human Factors in
+Computing Systems . ACM, 1065–1077.
+[3]Android. 2019. Design for Wear OS | Android Developers. Website. Retrieved January 31, 2020 from https://developer.android.com/
+design/wear.
+[4]Shaikh Shawon Arefin Shimon, Courtney Lutton, Zichun Xu, Sarah Morrison-Smith, Christina Boucher, and Jaime Ruiz. 2016. Exploring
+non-touchscreen gestures for smartwatches. In Proceedings of the 2016 CHI Conference on Human Factors in Computing Systems . ACM,
+3822–3833.
+[5] Daniel Lee Ashbrook. 2010. Enabling mobile microinteractions . Ph.D. Dissertation. Georgia Institute of Technology.
+[6]Anna L Beukenhorst, Jamie C Sergeant, Max A Little, John McBeth, and William G Dixon. 2018. Consumer Smartwatches for Collecting
+Self-Report and Sensor Data: App Design and Engagement.. In MIE. 291–295.
+[7]Niall Bolger, Angelina Davis, and Eshkol Rafaeli. 2003. Diary methods: Capturing life as it is lived. Annual review of psychology 54, 1
+(2003), 579–616.
+[8]Yung-Ju Chang, Gaurav Paruthi, and Mark W Newman. 2015. A field study comparing approaches to collecting annotated activity data
+in real-world settings. In Proceedings of the 2015 ACM International Joint Conference on Pervasive and Ubiquitous Computing . 671–682.
+[9]Eun Kyoung Choe, Bongshin Lee, Matthew Kay, Wanda Pratt, and Julie A Kientz. 2015. SleepTight: low-burden, self-monitoring
+technology for capturing and reflecting on sleep behaviors. In Proceedings of the 2015 ACM International Joint Conference on Pervasive
+and Ubiquitous Computing . ACM, 121–132.
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.158:20 •Yan et al.
+[10] Tamlin Conner and Eliza Bliss-Moreau. 2006. Sampling human experience in naturalistic settings. Emergent methods in social research
+(2006), 109–129.
+[11] Michael P Craven, Kirusnapillai Selvarajah, Robert Miles, Holger Schnädelbach, Adam Massey, Kavita Vedhara, Nicholas Raine-Fenning,
+and John Crowe. 2013. User requirements for the development of smartphone self-reporting applications in healthcare. In International
+Conference on Human-Computer Interaction . Springer, 36–45.
+[12] Nils Dahlbäck, Arne Jönsson, and Lars Ahrenberg. 1993. Wizard of Oz studies: why and how. In Proceedings of the 1st international
+conference on Intelligent user interfaces . 193–200.
+[13] Anind K Dey, Katarzyna Wac, Denzil Ferreira, Kevin Tassini, Jin-Hyuk Hong, and Julian Ramos. 2011. Getting closer: an empirical
+investigation of the proximity of user to their smart phones. In Proceedings of the 13th international conference on Ubiquitous computing .
+163–172.
+[14] Victor Dibia. 2016. Foqus: A smartwatch application for individuals with adhd and mental health challenges. In Proceedings of the 18th
+International ACM SIGACCESS Conference on Computers and Accessibility . ACM, 311–312.
+[15] Michael Dietz, Ilhan Aslan, Dominik Schiller, Simon Flutura, Anika Steinert, Robert Klebbe, and Elisabeth André. 2019. Stress Annotations
+from Older Adults - Exploring the Foundations for Mobile ML-Based Health Assistance. In Proceedings of the 13th EAI International
+Conference on Pervasive Computing Technologies for Healthcare (Trento, Italy) (PervasiveHealth’19) . Association for Computing Machinery,
+New York, NY, USA, 149–158. https://doi.org/10.1145/3329189.3329197
+[16] David Dobbelstein, Gabriel Haas, and Enrico Rukzio. 2017. The Effects of Mobility, Encumbrance, and (Non-)Dominant Hand on
+Interaction with Smartwatches. In Proceedings of the 2017 ACM International Symposium on Wearable Computers (Maui, Hawaii) (ISWC
+’17). ACM, New York, NY, USA, 90–93. https://doi.org/10.1145/3123021.3123033
+[17] Genevieve Fridlund Dunton, Eldin Dzubur, Keito Kawabata, Brenda Yanez, Bin Bo, and Stephen Intille. 2014. Development of a
+smartphone application to measure physical activity using sensor-assisted self-report. Frontiers in public health 2 (2014), 12.
+[18] Julian Frommel, Katja Rogers, Julia Brich, Daniel Besserer, Leonard Bradatsch, Isabel Ortinau, Ramona Schabenberger, Valentin Riemer,
+Claudia Schrader, and Michael Weber. 2015. Integrated questionnaires: maintaining presence in game environments for self-reported
+data acquisition. In Proceedings of the 2015 Annual Symposium on Computer-Human Interaction in Play . 359–368.
+[19] Andrew G Miner, Theresa M Glomb, and Charles Hulin. 2005. Experience sampling mood and its correlates at work. Journal of
+Occupational and Organizational Psychology 78, 2 (2005), 171–193.
+[20] Jun Gong, Xing-Dong Yang, and Pourang Irani. 2016. WristWhirl: One-Handed Continuous Smartwatch Input Using Wrist Gestures. In
+Proceedings of the 29th Annual Symposium on User Interface Software and Technology (Tokyo, Japan) (UIST ’16) . Association for Computing
+Machinery, New York, NY, USA, 861–872. https://doi.org/10.1145/2984511.2984563
+[21] Mitchell Gordon, Tom Ouyang, and Shumin Zhai. 2016. WatchWriter: Tap and gesture typing on a smartwatch miniature keyboard with
+statistical decoding. In Proceedings of the 2016 CHI Conference on Human Factors in Computing Systems . 3817–3821.
+[22] Katrin Hänsel, Akram Alomainy, and Hamed Haddadi. 2016. Large scale mood and stress self-assessments on a smartwatch. In Proceedings
+of the 2016 ACM International Joint Conference on Pervasive and Ubiquitous Computing: Adjunct . 1180–1184.
+[23] Seongkook Heo, Michelle Annett, Benjamin Lafreniere, Tovi Grossman, and George Fitzmaurice. 2017. No Need to Stop What You’Re
+Doing: Exploring No-Handed Smartwatch Interaction. In Proceedings of the 43rd Graphics Interface Colongtnference (GI ’17) . Canadian
+Human-Computer Communications Society, School of Computer Science, University of Waterloo, Waterloo, Ontario, Canada, 107–114.
+https://doi.org/10.20380/GI2017.14
+[24] Javier Hernandez, Daniel McDuff, Christian Infante, Pattie Maes, Karen Quigley, and Rosalind Picard. 2016. Wearable ESM: Differences
+in the Experience Sampling Method Across Wearable Devices. In Proceedings of the 18th International Conference on Human-Computer
+Interaction with Mobile Devices and Services (MobileHCI ’16) . ACM, New York, NY, USA, 195–205. https://doi.org/10.1145/2935334.2935340
+[25] Wilhelm Hofmann and Paresh V Patel. 2015. SurveySignal: A convenient solution for experience sampling research using participants’
+own smartphones. Social Science Computer Review 33, 2 (2015), 235–253.
+[26] Stefan E Hormuth. 1986. The sampling of experiences in situ. Journal of personality 54, 1 (1986), 262–293.
+[27] Stephen Intille, Caitlin Haynes, Dharam Maniar, Aditya Ponnada, and Justin Manjourides. 2016. 𝜇EMA: Microinteraction-based
+Ecological Momentary Assessment (EMA) Using a Smartwatch. In Proceedings of the 2016 ACM International Joint Conference on Pervasive
+and Ubiquitous Computing (UbiComp ’16) . ACM, New York, NY, USA, 1124–1128. https://doi.org/10.1145/2971648.2971717
+[28] Stephen S Intille, John Rondoni, Charles Kukla, Isabel Ancona, and Ling Bao. 2003. A context-aware experience sampling tool. In CHI’03
+extended abstracts on Human factors in computing systems . 972–973.
+[29] Daniel Kahneman, Alan B Krueger, David A Schkade, Norbert Schwarz, and Arthur A Stone. 2004. A survey method for characterizing
+daily life experience: The day reconstruction method. Science 306, 5702 (2004), 1776–1780.
+[30] Zachary D. King, Judith Moskowitz, Begum Egilmez, Shibo Zhang, Lida Zhang, Michael Bass, John Rogers, Roozbeh Ghaffari, Laurie
+Wakschlag, and Nabil Alshurafa. 2019. micro-Stress EMA: A Passive Sensing Framework for Detecting In-the-wild Stress in Pregnant
+Mothers. Proc. ACM Interact. Mob. Wearable Ubiquitous Technol. 3, 3, Article 91 (Sept. 2019), 22 pages. https://doi.org/10.1145/3351249
+[31] Reed Larson and Mihaly Csikszentmihalyi. 2014. The experience sampling method. In Flow and the foundations of positive psychology .
+Springer, 21–34.
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.Toward Lightweight In-situ Self-reporting: An Exploratory Study of Alternative Smartwatch Interface Designs in Context •158:21
+[32] Todd Matthew Manini, Tonatiuh Mendoza, Manoj Battula, Anis Davoudi, Matin Kheirkhahan, Mary Ellen Young, Eric Weber, Roger Ben-
+ton Fillingim, and Parisa Rashidi. 2019. Perception of Older Adults Toward Smartwatch Technology for Assessing Pain and Related
+Patient-Reported Outcomes: Pilot Study. JMIR mHealth and uHealth 7, 3 (2019), e10044.
+[33] Andreas Möller, Matthias Kranz, Barbara Schmid, Luis Roalter, and Stefan Diewald. 2013. Investigating self-reporting behavior in
+long-term studies. In Proceedings of the SIGCHI Conference on Human Factors in Computing Systems . ACM, 2931–2940.
+[34] Vivian Genaro Motti and Kelly Caine. 2015. Micro interactions and multi dimensional graphical user interfaces in the design of wrist
+worn wearables. In Proceedings of the Human Factors and Ergonomics Society Annual Meeting , Vol. 59. SAGE Publications Sage CA: Los
+Angeles, CA, 1712–1716.
+[35] Inez Myin-Germeys, Margreet Oorschot, Dina Collip, Johan Lataster, Philippe Delespaul, and Jim Van Os. 2009. Experience sampling
+research in psychopathology: opening the black box of daily life. Psychological medicine 39, 9 (2009), 1533–1547.
+[36] Camille Nadal, Corina Sas, and Gavin Doherty. 2020. Acceptance of smartwatches for automated self-report in mental health interventions.
+In25th annual international CyberPsychology, CyberTherapy & Social Networking Conference .
+[37] Antti Oulasvirta, Sakari Tamminen, Virpi Roto, and Jaana Kuorelahti. 2005. Interaction in 4-second Bursts: The Fragmented Nature
+of Attentional Resources in Mobile HCI. In Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (Portland,
+Oregon, USA) (CHI ’05) . ACM, New York, NY, USA, 919–928. https://doi.org/10.1145/1054972.1055101
+[38] Gaurav Paruthi, Shriti Raj, Seungjoo Baek, Chuyao Wang, Chuan-che Huang, Yung-Ju Chang, and Mark W. Newman. 2018. Heed:
+Exploring the Design of Situated Self-Reporting Devices. Proc. ACM Interact. Mob. Wearable Ubiquitous Technol. 2, 3, Article 132 (Sept.
+2018), 132:1–132:21 pages. https://doi.org/10.1145/3264942
+[39] Aditya Ponnada, Caitlin Haynes, Dharam Maniar, Justin Manjourides, and Stephen Intille. 2017. Microinteraction Ecological Momentary
+Assessment Response Rates: Effect of Microinteractions or the Smartwatch? Proc. ACM Interact. Mob. Wearable Ubiquitous Technol. 1, 3,
+Article 92 (Sept. 2017), 16 pages. https://doi.org/10.1145/3130957
+[40] William T Riley, Daniel E Rivera, Audie A Atienza, Wendy Nilsen, Susannah M Allison, and Robin Mermelstein. 2011. Health behavior
+models in the age of mobile interventions: are our theories up to the task? Translational behavioral medicine 1, 1 (2011), 53–71.
+[41] Daniel E Rivera and Holly B Jimison. 2013. Systems modeling of behavior change: Two illustrations from optimized interventions for
+improved health outcomes. IEEE pulse 4, 6 (2013), 41–47.
+[42] Richard W Robins, Holly M Hendin, and Kali H Trzesniewski. 2001. Measuring global self-esteem: Construct validation of a single-item
+measure and the Rosenberg Self-Esteem Scale. Personality and social psychology bulletin 27, 2 (2001), 151–161.
+[43] John Christopher Rondoni. 2003. Context-aware experience sampling for the design and study of ubiquitous technologies . Ph.D. Dissertation.
+Massachusetts Institute of Technology.
+[44] Samsung. 2019. Galaxy Watch - Design | Samsung Developers. Website. Retrieved January 31, 2020 from https://developer.samsung.
+com/galaxy-watch-design/wearables/overview.html.
+[45] Niilo Saranummi, Donna Spruijt-Metz, Stephen S Intille, Ilkka Korhone, Wendy J Nilsen, and Misha Pavel. 2013. Moving the science of
+behavior change into the 21st century: novel solutions to prevent disease and promote health. IEEE pulse 4, 5 (2013), 22–24.
+[46] Hillol Sarker, Moushumi Sharmin, Amin Ahsan Ali, Md Mahbubur Rahman, Rummana Bari, Syed Monowar Hossain, and Santosh
+Kumar. 2014. Assessing the availability of users to engage in just-in-time intervention in the natural environment. In Proceedings of the
+2014 ACM International Joint Conference on Pervasive and Ubiquitous Computing . 909–920.
+[47] Hasti Seifi and Kent Lyons. 2016. Exploring the design space of touch-based vibrotactile interactions for smartwatches. In Proceedings of
+the 2016 ACM International Symposium on Wearable Computers . 156–165.
+[48] Dong-Hee Shin and Frank Biocca. 2017. Health experience model of personal informatics: The case of a quantified self. Computers in
+Human Behavior 69 (2017), 62–74.
+[49] Gaganpreet Singh, William Delamare, and Pourang Irani. 2018. D-SWIME: A Design Space for Smartwatch Interaction Techniques
+Supporting Mobility and Encumbrance. In Proceedings of the 2018 CHI Conference on Human Factors in Computing Systems (Montreal QC,
+Canada) (CHI ’18) . ACM, New York, NY, USA, Article 634, 13 pages. https://doi.org/10.1145/3173574.3174208
+[50] Donna Spruijt-Metz and Wendy Nilsen. 2014. Dynamic models of behavior for just-in-time adaptive interventions. IEEE Pervasive
+Computing 13, 3 (2014), 13–17.
+[51] Janko Timmermann, Wilko Heuten, and Susanne Boll. 2015. Input methods for the Borg-RPE-scale on smartwatches. In Proceedings of the
+9th International Conference on Pervasive Computing Technologies for Healthcare . ICST (Institute for Computer Sciences, Social-Informatics
+and . . . , 80–83.
+[52] Khai N. Truong, Thariq Shihipar, and Daniel J. Wigdor. 2014. Slide to X: Unlocking the Potential of Smartphone Unlocking. In
+Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (CHI ’14) . ACM, New York, NY, USA, 3635–3644.
+https://doi.org/10.1145/2556288.2557044
+[53] Niels Van Berkel, Denzil Ferreira, and Vassilis Kostakos. 2017. The experience sampling method on mobile devices. ACM Computing
+Surveys (CSUR) 50, 6 (2017), 1–40.
+[54] Madelon LM Van Hooff, Sabine AE Geurts, Michiel AJ Kompier, and Toon W Taris. 2007. “How fatigued do you currently feel?”
+Convergent and discriminant validity of a single-item fatigue measure. Journal of Occupational Health 49, 3 (2007), 224–234.
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.158:22 •Yan et al.
+[55] Julio Vega, Samuel Couth, Ellen Poliakoff, Sonja Kotz, Matthew Sullivan, Caroline Jay, Markel Vigo, and Simon Harper. 2018. Back to
+Analogue: Self-Reporting for Parkinson’s Disease. In Proceedings of the 2018 CHI Conference on Human Factors in Computing Systems
+(CHI ’18) . ACM, New York, NY, USA, Article 74, 74:1–74:13 pages. https://doi.org/10.1145/3173574.3173648
+[56] Philippe Verduyn, Ellen Delvaux, Hermina Van Coillie, Francis Tuerlinckx, and Iven Van Mechelen. 2009. Predicting the duration of
+emotional experience: Two experience sampling studies. Emotion 9, 1 (2009), 83.
+[57] Aku Visuri, Niels van Berkel, Chu Luo, Jorge Goncalves, Denzil Ferreira, and Vassilis Kostakos. 2017. Predicting Interruptibility
+for Manual Data Collection: A Cluster-based User Model. In Proceedings of the 19th International Conference on Human-Computer
+Interaction with Mobile Devices and Services (Vienna, Austria) (MobileHCI ’17) . ACM, New York, NY, USA, Article 12, 14 pages. https:
+//doi.org/10.1145/3098279.3098532
+[58] Cheng-Yao Wang, Min-Chieh Hsiu, Po-Tsung Chiu, Chiao-Hui Chang, Liwei Chan, Bing-Yu Chen, and Mike Y. Chen. 2015. PalmGesture:
+Using Palms As Gesture Interfaces for Eyes-free Input. In Proceedings of the 17th International Conference on Human-Computer Interaction
+with Mobile Devices and Services (Copenhagen, Denmark) (MobileHCI ’15) . ACM, New York, NY, USA, 217–226. https://doi.org/10.1145/
+2785830.2785885
+[59] John P Wanous, Arnon E Reichers, and Michael J Hudy. 1997. Overall job satisfaction: how good are single-item measures? Journal of
+applied Psychology 82, 2 (1997), 247.
+[60] Jacob O Wobbrock. 2019. Situationally-induced impairments and disabilities. In Web Accessibility . Springer, 59–92.
+[61] Xinghui Yan, Katy Madier, Sun Young Park, and Mark Newman. 2019. Towards Low-burden In-situ Self-reporting: A Design Space
+Exploration. In Companion Publication of the 2019 on Designing Interactive Systems Conference 2019 Companion (San Diego, CA, USA)
+(DIS ’19 Companion) . ACM, New York, NY, USA, 337–346. https://doi.org/10.1145/3301019.3323905
+[62] Eman MG Younis, Eiman Kanjo, and Alan Chamberlain. 2019. Designing and evaluating mobile self-reporting techniques: crowdsourcing
+for citizen science. Personal and Ubiquitous Computing 23, 2 (2019), 329–338.
+[63] Xiaoyi Zhang, Laura R. Pina, and James Fogarty. 2016. Examining Unlock Journaling with Diaries and Reminders for In Situ Self-Report
+in Health and Wellness. In Proceedings of the 2016 CHI Conference on Human Factors in Computing Systems (CHI ’16) . ACM, New York,
+NY, USA, 5658–5664. https://doi.org/10.1145/2858036.2858360
+Proc. ACM Interact. Mob. Wearable Ubiquitous Technol., Vol. 4, No. 4, Article 158. Publication date: December 2020.
