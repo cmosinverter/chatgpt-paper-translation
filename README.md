@@ -19,6 +19,11 @@ Install the required python packages:
 
 ## Usage
 
+Put the `.pdf` file you want to translate in the `papers` folder.
+
+**Warning:** change the pdf file name you want to parse of the parameter `file_name` in Step 3. in `main.ipynb` file.
+
 Recommend to use Jupyter Notebook to run the code on Visual Studio Code.
 
 Follow the instructions in the `main.ipynb` file. Execute the codeblock step by step.
+
