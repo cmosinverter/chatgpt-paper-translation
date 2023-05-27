@@ -8,9 +8,15 @@ Clone the repository the your local computer:
 
     git clone https://github.com/cmosinverter/chatgpt-paper-translation.git
 
+Change Directory to the repository:
+
+    cd chatgpt-paper-translation
+
 Install the required python packages:
 
     pip install -r requirements.txt
+
+
 
 
 ### Compatibility

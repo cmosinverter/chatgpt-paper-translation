@@ -27,10 +27,10 @@ def get_split_list(pdf_name):
     split_index_list = [sentence_end_index[0]]
 
     for i in range(len(sentence_end_index)):
-            if sentence_end_index[i] - split_index_list[-1] >= 15:
+            if sentence_end_index[i] - split_index_list[-1] >= 10:
                 split_index_list.append(sentence_end_index[i-1])
                 
-    if split_index_list[0] < 15:
+    if split_index_list[0] < 10:
         split_index_list.pop(0)
 
     split_index_list = [i+1 for i in split_index_list]
@@ -53,7 +53,7 @@ def read_specific_rows(file_path, start_row, end_row):
                 raise ValueError("Invalid start_row or end_row values.")
 
             selected_lines = lines[start_row:end_row]
-            return '翻譯成繁體中文: '+' '.join(selected_lines).replace('\n', '')
+            return 'Translated to Chinese (Traditional), no need to translate the title or subtitle, but you need to include them: '+' '.join(selected_lines).replace('\n', '')
     except FileNotFoundError:
         print(f"File '{file_path}' not found.")
     except Exception as e:
