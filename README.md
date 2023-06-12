@@ -2,6 +2,9 @@
 
 This project provides a solution for those who want to use ChatGPT to translate .pdf papers but are unable to purchase the API.
 
+## Demo (Youtube Link)
+    https://youtu.be/kGNY3XYbaiE
+
 ## Installation
 
 Clone the repository the your local computer:
